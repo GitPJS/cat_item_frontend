@@ -4,12 +4,13 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import Post from "./modules/post";
+import Image from "./modules/image";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-
   post: Post,
+  image: Image,
   router: connectRouter(history),
 });
 
