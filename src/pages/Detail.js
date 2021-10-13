@@ -22,7 +22,7 @@ function Detail(props) {
             <Grid padding="16px">
               <h4>장난감 1</h4>
               <p>닉네임</p>
-              <p>저희 고양이가 너무 좋아해서 후기글 남깁니다 매일 매일 가지고 놀asdfdsafasdfasdfafasdf아요~~~</p>
+              <p>저희 고양이가 너무 좋아해서 후기글 남깁니다 매일 매일 가지고 놀아요~~~~</p>
             </Grid>
             <Button
                   width="auto"
