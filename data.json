@@ -1,51 +1,59 @@
 {
-    "posts": [
-      {
-        "postId":0,
-        "userId":"asdfa",
-        "title":"타이틀1",
-        "content":"일번",
-        "image":"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-        "nickname":"qkrtkdtn",
-        "postDelType":0,
-        "createdAt":"0000-00-00",
-        "updatedAt":"0000-00-00"
-
+  "posts": [
+    {
+      "id": 0,
+      "userId": "asdfa",
+      "title": "타이틀1",
+      "content": "일번",
+      "image": "https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
+      "nickname": "qkrtkdtn",
+      "postDelType": 0,
+      "createdAt": "0000-00-00",
+      "updatedAt": "0000-00-00"
     },
     {
-      "postId":1,
-        "userId":"asdfa",
-        "title":"타이틀1",
-        "content":"일번",
-        "image":"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-        "nickname":"qkrtkdtn",
-        "postDelType":0,
-        "createdAt":"0000-00-00",
-        "updatedAt":"0000-00-00"
+      "id": 1,
+      "userId": "asdfa",
+      "title": "타이틀1",
+      "content": "일번",
+      "image": "https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
+      "nickname": "qkrtkdtn",
+      "postDelType": 0,
+      "createdAt": "0000-00-00",
+      "updatedAt": "0000-00-00"
     },
     {
-      "postId":2,
-        "userId":"asdfa",
-        "title":"타이틀1",
-        "content":"일번",
-        "image":"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-        "nickname":"qkrtkdtn",
-        "postDelType":0,
-        "createdAt":"0000-00-00",
-        "updatedAt":"0000-00-00"
-
+      "id": 2,
+      "userId": "asdfa",
+      "title": "타이틀1",
+      "content": "일번",
+      "image": "https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
+      "nickname": "qkrtkdtn",
+      "postDelType": 0,
+      "createdAt": "0000-00-00",
+      "updatedAt": "0000-00-00"
     },
     {
-      "postId":3,
-        "userId":"asdfa",
-        "title":"타이틀1",
-        "content":"일번",
-        "image":"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-        "nickname":"qkrtkdtn",
-        "postDelType":0,
-        "createdAt":"0000-00-00",
-        "updatedAt":"0000-00-00"
-
+      "id": 3,
+      "userId": "asdfa",
+      "title": "타이틀1",
+      "content": "일번",
+      "image": "https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
+      "nickname": "qkrtkdtn",
+      "postDelType": 0,
+      "createdAt": "0000-00-00",
+      "updatedAt": "0000-00-00"
+    },
+    {
+      "userId": "asdfa",
+      "title": "타이틀1",
+      "content": "안녕하세요",
+      "image": "https://hangha99-cat-bu.s3.ap-northeast-2.amazonaws.com/upload/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.jpg",
+      "nickname": "qkrtkdtn",
+      "postDelType": 0,
+      "createdAt": "0000-00-00",
+      "updatedAt": "0000-00-00",
+      "id": 5
     }
-    ]
-  }
+  ]
+}
