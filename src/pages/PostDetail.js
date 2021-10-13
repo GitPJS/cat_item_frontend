@@ -1,36 +1,48 @@
-import React from "react";
-import Post from "../components/Post";
+import React, {useState} from "react";
+import { useEffect } from "react";
+import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import Grid from "../elements/Grid";
 
-import { useDispatch, useSelector } from "react-redux";
+function Detail(props) {
 
-import { actionCreators as postActions } from "../redux/modules/post";
-import Detail from "./Detail";
+ 
+  let [inputData, inputData변경] = useState('');
 
-// 게시글 상세 페이지
-const PostDetail = (props) => {
-  const dispatch = useDispatch();
-  const id = props.match.params.id;
-
-  const post_list = useSelector((state) => state.post.list);
-
-  const post_idx = post_list.findIndex((p) => p.id.toString() === id);
-
-  const post = post_list[post_idx];
-
-  React.useEffect(() => {
+    let { id } = useParams();
+    //뒤로가기 1(2)
+    let history = useHistory();
     
-    if (post) {
-      return;
-    }
-  }, []);
 
-  return (
-    <React.Fragment>
-      {post && (
-        <Detail {...post}/>
-      )}
-    </React.Fragment>
-  );
-};
+    return (
+        <div className="container">
+          <박스>
+            <제목 className="red">제품 후기</제목>
+          </박스>
+   
+          <Grid is_flex>
+            <Grid>
+              <img src="https://imgc.1300k.com/aaaaaib/goods/215024/83/215024836202.jpg?3" width="100%" />
+            </Grid>
+            <Grid padding="16px">
+              <h4>장난감 1</h4>
+              <p>닉네임</p>
+              <p>저희 고양이가 너무 좋아해서 후기글 남깁니다 매일 매일 가지고 놀아요~~~</p>
+            </Grid>
+          </Grid>
+        </div>
+    )
+}
 
-export default PostDetail;
+
+let 박스 = styled.div`
+  padding: 30px;
+`;
+
+let 제목 = styled.h4`
+  font-size: 25px;
+  color: ${props => props.색상}
+`;
+
+
+export default Detail;
