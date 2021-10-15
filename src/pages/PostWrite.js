@@ -3,7 +3,7 @@ import { Grid, Text, Button, Image, Input } from "../elements";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as imageActions } from "../redux/modules/image";
 import { actionCreators as postActions } from "../redux/modules/post";
-import AWS from 'aws-sdk';
+import Upload from "../shared/Upload";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
@@ -12,68 +12,27 @@ const PostWrite = (props) => {
   const post_id = props.match.params.id;
 
   const is_edit = post_id ? true : false;
-  const _post = is_edit ? post_list.find((p) => p.id.toString() === post_id): null;
+  const _post = is_edit ? post_list.find((p) => p.postId.toString() === post_id): null;
   const [contents, setContents] = React.useState(_post ? _post.content : "");
-  const [selectedFile, setSelectedFile] = React.useState("");
-  const fileInput = React.useRef();
+  const [title, setTitle] = React.useState("");
   const { history } = props;
 
-    const ACCESS_KEY = 'AKIA5IRMDBE7D3E5JTX7';
-    const SECRET_ACCESS_KEY = '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';
-    const REGION = "ap-northeast-2";
-    const S3_BUCKET = 'hangha99-cat-bu';
-
-    AWS.config.update({
-        accessKeyId: ACCESS_KEY,
-        secretAccessKey: SECRET_ACCESS_KEY
-    });
-
-    const s3 = new AWS.S3({
-        params: { Bucket: S3_BUCKET},
-        region: REGION,
-    });
+  const changeTitle = (e) => {
+    setTitle(e.target.value)
+  }
 
   const changeContents = (e) => {
     setContents(e.target.value)
   }
 
   const addPost = () => {
-    console.log(selectedFile)
-    const params = {
-      ACL: 'public-read',
-      Body: selectedFile,
-      Bucket: S3_BUCKET,
-      Key: "upload/" + selectedFile.name
-    };
-    
-    s3.upload(params,function(err, data){
-      if(err){
-        throw err;
-      }else{
-        dispatch(postActions.addPostMiddleware(contents,data.Location))
-      }
-    }); 
+
+    dispatch(postActions.addPostMiddleware(contents,title))
   }
 
   const editPost = () => {
-    dispatch(postActions.editPostMiddleware(post_id,contents))
+    dispatch(postActions.editPostMiddleware(post_id,contents,title))
   }
-
-  const selectFile = (e) => {
-    
-    const reader = new FileReader();
-    const file = fileInput.current.files[0];
-
-    reader.readAsDataURL(file);
-
-    reader.onloadend = () => {
-      
-    dispatch(imageActions.setPreview(reader.result));
-    setSelectedFile(fileInput.current.files[0]);
-    };
-  };
-
-
 
   React.useEffect(() => {
 
@@ -104,8 +63,13 @@ const PostWrite = (props) => {
             <Image src={preview ? preview : "http://via.placeholder.com/400x300"}/>
         </Grid>
         <Grid margin="0px 0px 0px 60px">
-          <input type="file" onChange={selectFile} ref={fileInput} />
+          <Upload />
         </Grid>
+      </Grid>
+
+      <Grid>
+        <Text>게시글 제목</Text>
+        <input value={title} onChange={changeTitle}/>
       </Grid>
 
       <Grid padding="16px">

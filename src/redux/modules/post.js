@@ -24,7 +24,7 @@ const getPostMiddleware = () => {
       apis
         .getPost()
         .then((res) => {
-          const post_list = res.data;
+          const post_list = res.data.result;
           dispatch(setPost(post_list));
         })
         .catch((err) => {
@@ -33,57 +33,55 @@ const getPostMiddleware = () => {
     };
   };
 
-  const addPostMiddleware = (post_content,post_image) => {
+  const addPostMiddleware = (post_content,post_title) => {
     return(dispatch, getState, {history}) => {
-      
 
-      const content = {
-        userId:"asdfa",
-        title:"타이틀1",
-        content:post_content,
-        image:post_image,
-        nickname:"qkrtkdtn",
-        postDelType:0,
-        createdAt:"0000-00-00",
-        updatedAt:"0000-00-00"
-      }
+      const _file = getState().image.file;
+      console.log(_file)
+      let formData = new FormData()
+      formData.append("image", _file)
+      apis.upload(formData).then((res) => {
+        const content = {
+          title:post_title,
+          content:post_content,
+          image: res.data.resizeUrl,
+        }
+        apis.createPost(content).then(() => {
+          dispatch(addPost(content));
+          history.push('/');
+          dispatch(imageActions.setPreview(null));
+        }).catch((err) => {
+          console.error(err);
+        })
 
-
-      
-      
-      apis.createPost(content).then(() => {
-        dispatch(addPost(content));
-        history.push('/');
-        dispatch(imageActions.setPreview(null));
       }).catch((err) => {
+
         console.error(err);
       })
+      
+      
     }
   }
 
-  const editPostMiddleware = (post_id = null, post_content) => {
+  const editPostMiddleware = (post_id = null, post_content, post_title) => {
     return(dispatch, getState, {history}) => {
+      
       if(!post_id){
         console.log("게시물 정보가 없어요!");
         return
       }
 
       const _image = getState().image.preview;
-      const _post_idx = getState().post.list.findIndex((p) => p.id.toString() === post_id);
+      const _post_idx = getState().post.list.findIndex((p) => p.postId.toString() === post_id);
       const _post = getState().post.list[_post_idx];
 
       if(_image === _post.image){
         const content = {
-          userId:"asdfa",
-          title:"타이틀1",
+          title:post_title,
           content:post_content,
-          image:"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-          nickname:"qkrtkdtn",
-          postDelType:0,
-          createdAt:"0000-00-00",
-          updatedAt:"0000-00-00"
+          image: _image,
         }
-        apis.editPost(post_id, content).then(() => {
+        apis.edit_Post(post_id, content).then(() => {
           dispatch(editPost(post_id, content));
           history.push('/');
           dispatch(imageActions.setPreview(null));
@@ -91,23 +89,30 @@ const getPostMiddleware = () => {
           console.error(err);
         })
       }else{
-        const content = {
-          userId:"asdfa",
-          title:"타이틀1",
-          content:post_content,
-          image:"https://t1.daumcdn.net/liveboard/holapet/7dd0ffdc19294528b5de0ffb31829366.JPG",
-          nickname:"qkrtkdtn",
-          postDelType:0,
-          createdAt:"0000-00-00",
-          updatedAt:"0000-00-00"
-        }
-        apis.editPost(post_id, content).then(() => {
-          dispatch(editPost(post_id, content));
-          history.push('/');
-          dispatch(imageActions.setPreview(null));
-        }).catch((err) => {
-          console.error(err);
-        })
+        const _file = getState().image.file;
+        console.log(_file)
+        let formData = new FormData()
+        formData.append("image", _file)
+        apis.upload(formData).then((res) => {
+
+          console.log(res.data.resizeUrl)
+
+          const content = {
+            title:post_title,
+            content:post_content,
+            image: res.data.resizeUrl,
+          }
+
+          apis.edit_Post(post_id, content).then(() => {
+            dispatch(editPost(post_id, content));
+            history.push('/');
+            dispatch(imageActions.setPreview(null));
+          }).catch((err) => {
+            console.error(err);
+          })
+      }).catch((err) => {
+        console.error(err);
+      })
       }
     }
   }
@@ -128,11 +133,24 @@ const getPostMiddleware = () => {
     }
   }
 
+  const getOnePostMiddleware = (post_id) => {
+    return (dispatch, getState, {history}) => {
+      apis.getOnePost(post_id).then((res) => {
+        const post_list = res.data.result;
+        dispatch(setPost([post_list]));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
+  }
+
 export default handleActions(
     {
         [SET_POST]: (state, action) =>
         produce(state, (draft) => {
           draft.list = action.payload.post_list;
+          console.log(draft.list)
         }),
         [ADD_POST]: (state, action) => 
         produce(state, (draft) => {
@@ -140,12 +158,12 @@ export default handleActions(
         }),
         [EDIT_POST]: (state, action) => 
         produce(state, (draft) => {
-         let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.post_id);
+         let idx = draft.list.findIndex((p) => p.postId.toString() === action.payload.post_id);
          draft.list[idx] = {...draft.list[idx], ...action.payload.post_content}
         }),
         [DEL_POST]: (state, action) => 
         produce(state, (draft) => {
-          let idx = draft.list.findIndex((p) => p.id.toString() === action.payload.post_id);
+          let idx = draft.list.findIndex((p) => p.postId.toString() === action.payload.post_id);
           if (idx !== -1) {
             draft.list.splice(idx, 1);
           }
@@ -162,7 +180,8 @@ const actionCreators = {
     editPost,
     editPostMiddleware,
     delPost,
-    deletePostMiddleware
+    deletePostMiddleware,
+    getOnePostMiddleware
   };
   
 export { actionCreators };
