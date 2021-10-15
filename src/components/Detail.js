@@ -1,19 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 import { history } from "../redux/configureStore";
 import styled from 'styled-components';
-import { Grid,Button } from "../elements";
+import { Grid, Button, Text } from "../elements";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 function Detail(props) {
 
- 
-  let [inputData, inputData변경] = useState('');
   const dispatch = useDispatch();
     return (  
         <div className="container">
-          <박스>
-            <제목 className="red">{props.title}</제목>
-          </박스>
+          <Grid>
+            <Text className="red">{props.title}</Text>
+          </Grid>
    
           <Grid is_flex>
             <Grid>
@@ -22,7 +20,7 @@ function Detail(props) {
             <Grid padding="16px">
               <h4>장난감 1</h4>
               <p>닉네임</p>
-              <p>저희 고양이가 너무 좋아해서 후기글 남깁니다 매일 매일 가지고 놀아요~~~~~</p>
+              <p>{props.content}</p>
             </Grid>
             <Button
                   width="auto"
@@ -33,7 +31,7 @@ function Detail(props) {
                     // 이벤트 캡쳐링, 버블링이 뭔지 검색해보기! :)
                     e.preventDefault();
                     e.stopPropagation();
-                    history.push(`/write/${props.id}`);
+                    history.push(`/write/${props.postId}`);
                   }}
                 >
                   수정
@@ -47,7 +45,7 @@ function Detail(props) {
                     // 이벤트 캡쳐링, 버블링이 뭔지 검색해보기! :)
                     e.preventDefault();
                     e.stopPropagation();
-                    dispatch(postActions.deletePostMiddleware(props.id));
+                    dispatch(postActions.deletePostMiddleware(props.postId));
                   }}
                 >
                   삭제
@@ -56,16 +54,5 @@ function Detail(props) {
         </div>
     )
 }
-
-
-let 박스 = styled.div`
-  padding: 30px;
-`;
-
-let 제목 = styled.h4`
-  font-size: 25px;
-  color: ${props => props.색상}
-`;
-
 
 export default Detail;

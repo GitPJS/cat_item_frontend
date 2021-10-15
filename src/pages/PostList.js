@@ -8,21 +8,21 @@ const PostList = (props) => {
     const { history } = props;
     const dispatch = useDispatch();
     const lists = useSelector((state) => state.post.list);
-
+    
     React.useEffect(() => {
+
         dispatch(postCreators.getPostMiddleware());
     },[])
-
 
     return (
         <React.Fragment>
             <Grid padding="20px 0px" is_grid >
                     {lists.map((list) => {
                         return(
-                            <Grid margin="8px 0px" padding="90px" _onClick={() => {
-                                history.push(`/post/${list.id}`);
+                            <Grid key={list.postId} margin="8px 0px" padding="30px" _onClick={() => {
+                                history.push(`/post/${list.postId}`);
                             }}>
-                                <Post key={list.postId} {...list}/>
+                                <Post {...list}/>
                             </Grid>
                         )
                     })}
