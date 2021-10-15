@@ -18,13 +18,11 @@ export const apis = {
   edit_Post: (id, content) => instance.put(`/api/posts/modifyImageUrl/${id}`, content),
   // 게시물 삭제하기
   delPost: (id) => instance.patch(`api/posts/delete/${id}`),
-
-  upload: (data) => instance.post('/api/posts/upload',data)
-  //주승님 api
-  //회원가입 함수
-  //로그인 함수 
-  //아이디 체크 함수
-  //
+  upload: (data) => instance.post('/api/posts/upload',data),
+  //회원가입
+  signUp: (data) => instance.post('/api/register', data),
+  //로그인
+  login : (data) => instance.post('/api/login', data)
 
 
   //은설님 api
