@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: 'http://localhost:4000/',
+  baseURL: 'http://stravinest.shop/',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json',
@@ -20,11 +20,10 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.delete(`/posts/${id}`),
 
-  //주승님 api
-  //회원가입 함수
-  //로그인 함수 
-  //아이디 체크 함수
-  //
+  //회원가입
+  signUp: (data) => instance.post('/api/register', data),
+  //로그인
+  login : (data) => instance.post('/api/login', data)
 
 
   //은설님 api
