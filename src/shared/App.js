@@ -8,7 +8,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import PostWrite from "../pages/PostWrite";
 import PostDetail from "../pages/PostDetail";
-// import Header from "../components/Header";
+import Header from "../components/Header";
 import { history } from "../redux/configureStore";
 import { Grid } from "../elements";
 
@@ -17,7 +17,7 @@ function App() {
     <React.Fragment>
       <Grid>
       <ConnectedRouter history={history}>
-          {/* <Header></Header> */}
+          <Header></Header>
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Signup} />

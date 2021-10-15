@@ -82,7 +82,7 @@ const LoginDB = (userId, userPw) => {
         //   userId: userId,
         // };
         window.alert(res.data.message)
-        // dispatch(setUser(user));
+        dispatch(setUser(data));
         history.replace("/");
       })
       .catch((err) => {
