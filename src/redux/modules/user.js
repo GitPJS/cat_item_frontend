@@ -87,7 +87,7 @@ const LoginDB = (userId, userPw) => {
       })
       .catch((err) => {
         console.log(err);
-        window.alert("회원정보가 일치하지 않습니다.");
+        window.alert("회원정보가 일치하지 않습니다.!");
         return;
       });
   };
