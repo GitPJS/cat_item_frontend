@@ -41,10 +41,11 @@ const getPostMiddleware = () => {
       let formData = new FormData()
       formData.append("image", _file)
       apis.upload(formData).then((res) => {
+        console.log(res.data.originalUrl)
         const content = {
           title:post_title,
           content:post_content,
-          image: res.data.resizeUrl,
+          image: res.data.originalUrl,
         }
         apis.createPost(content).then(() => {
           dispatch(addPost(content));
@@ -95,12 +96,12 @@ const getPostMiddleware = () => {
         formData.append("image", _file)
         apis.upload(formData).then((res) => {
 
-          console.log(res.data.resizeUrl)
+          console.log(res.data.originalUrl)
 
           const content = {
             title:post_title,
             content:post_content,
-            image: res.data.resizeUrl,
+            image: res.data.originalUrl,
           }
 
           apis.edit_Post(post_id, content).then(() => {
@@ -150,7 +151,6 @@ export default handleActions(
         [SET_POST]: (state, action) =>
         produce(state, (draft) => {
           draft.list = action.payload.post_list;
-          console.log(draft.list)
         }),
         [ADD_POST]: (state, action) => 
         produce(state, (draft) => {
