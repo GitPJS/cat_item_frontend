@@ -102,8 +102,8 @@ const loginCheckFB = () => {
     }
     
     apis.logincheck(token).then((res) =>{
-      console.log(res)
-      dispatch(setUser([res]));
+      console.log(res.data)
+      dispatch(setUser(res.data));
     }).catch((err) => {
       console.log(err);
     })
