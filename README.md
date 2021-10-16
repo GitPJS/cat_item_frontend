@@ -50,6 +50,10 @@ http://tmahrm35.shop.s3-website.ap-northeast-2.amazonaws.com/
  리덕스 안에 localStorage로 담긴 token값을 백엔드에 보내주고 해당 token값에 맞는 회원 아이디만 가지고 와서<br>
  리덕스 상태를 업데이트하는 방식으로 해결했다<br>
  
+ <h3>5. 토큰받기</h3>
+ 우리는 jwt토큰을 쿠키에 저장하는 방식을 사용했다.<br>
+ 여기서 토큰을 전달받는 과정에서 어려움을 겪었는데<br/>
+ 후에 axios header로 부터 Bearer을 통해 전달 받았다. <br>
  
  <h3>6. 유효성 검사(alert)</h3>
  로그인이나 회원가입부분에서 유효성체크를 할 때 백과 프론트에서 따로 유효성처리가 진행되었는데, <br/>
