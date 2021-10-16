@@ -4,12 +4,13 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import {Grid, Button} from "../elements";
 import Comments from "../pages/Comments";
-import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import Detail from "../components/Detail";
 
 
 
-function Detail(props) {
+
+function PostDetail(props) {
   const dispatch = useDispatch();
  
   let [inputData, inputData변경] = useState('');
@@ -92,3 +93,35 @@ let Title = styled.h4`
 
 
 export default Detail;
+
+import { useDispatch, useSelector } from "react-redux";
+
+
+
+// 게시글 상세 페이지
+const PostDetail = (props) => {
+  const dispatch = useDispatch();
+  const id = props.match.params.id;
+  
+  const post_list = useSelector((store) => store.post.list);
+  const post_idx = post_list.findIndex((p) => p.postId.toString() === id);
+  const post = post_list[post_idx];
+
+  React.useEffect(() => {
+    console.log(post_list)
+    if (post) {
+      return;
+    }
+    dispatch(postActions.getOnePostMiddleware(id))
+  }, []);
+
+  return (
+    <React.Fragment>
+      {post && (
+        <Detail {...post}/>
+      )}
+    </React.Fragment>
+  );
+};
+
+export default PostDetail;
