@@ -26,13 +26,13 @@ const signUpDB = (userId, nickname, userPw) => {
   return function (dispatch, getState, { history }) {
 
     const data = {
-      userId : userId,
+      userId: userId,
       nickname: nickname,
       userPw: userPw,
     }
 
     apis
-    .signUp(data)
+      .signUp(data)
 
       .then(() => {
         window.alert("회원가입을 축하드립니다!");
@@ -84,21 +84,21 @@ const LoginDB = (userId, userPw) => {
 
 //로그인 체크 
 const loginCheckFB = () => {
-	return function (dispatch, getState, { history }) {
+  return function (dispatch, getState, { history }) {
     const localtoken = localStorage.getItem("token")
-    
+
     const token = {
       usertoken: localtoken
     }
-    
+
     apis
-    .logincheck(token)
-    .then((res) =>{
-      console.log(res)
-      dispatch(setUser(res.data));
-    }).catch((err) => {
-      console.log(err);
-    })
+      .logincheck(token)
+      .then((res) => {
+        console.log(res)
+        dispatch(setUser(res.data));
+      }).catch((err) => {
+        console.log(err);
+      })
   };
 }
 
@@ -121,7 +121,7 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
-      
+
     [GET_USER]: (state, action) =>
       produce(state, (draft) => {
         // 로그인상태(is_login) true로 변경

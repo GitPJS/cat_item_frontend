@@ -9,6 +9,7 @@ const PostList = (props) => {
     const dispatch = useDispatch();
     const lists = useSelector((state) => state.post.list);
     const is_login = useSelector((state) => state.user.is_login);
+    
     React.useEffect(() => {
 
         dispatch(postCreators.getPostMiddleware());
@@ -29,6 +30,7 @@ const PostList = (props) => {
           is_float
           _onClick={() => {
             history.push("/write");
+
           }}
         >
           +
