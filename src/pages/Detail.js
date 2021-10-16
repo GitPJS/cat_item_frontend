@@ -51,7 +51,7 @@ function Detail(props) {
                   }}
                 >
                   삭제
-                </Button>
+             </Button>
           </Grid>
         </div>
     )

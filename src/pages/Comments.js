@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Grid } from "../elements"
 
 function Comments(){
 
@@ -6,10 +7,12 @@ function Comments(){
   let [count, counts] = useState(0);
   //내가 입력한 인풋값 추가하기 2(2)
   let [입력값, 입력값변경] = useState('');
+  // const createAt = moment().format("YYYY-MM-DD");
 
 
   return (
     <div className="App">
+      <Grid padding="16px">
       <p>댓글쓰기</p>
       <p>닉네임</p>
       {/*내가 입력한 인풋값 추가하기 1(2)*/}
@@ -22,25 +25,26 @@ function Comments(){
           var arrayCopy = [...title];
           arrayCopy.unshift(입력값);
           titles( arrayCopy );
-        }}>저장</button>
+        }}>댓글저장</button>
       </div>
+      <hr />
 
-      {
-        title.map((t,i)=>{
+      {/* 댓글창 */}
+      {title.map((t,i)=>{
           return(
             <div className="list" key={i}>
-              <h5>닉네임</h5>
-              <h3 onClick={()=>{counts(i)}}> {t}</h3>
-              <p>2021-10-10 10:00</p>
+              <h6>닉네임</h6>
+              <p onClick={()=>{counts(i)}}> {t}</p>
+              {/* <p>{createAt}</p> */}
               <hr/>
             </div>
           )
-        })
-      }
+        })}
 
       
-
+      </Grid>
     </div>
+    
   );
 }
 

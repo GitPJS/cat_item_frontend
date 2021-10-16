@@ -7,6 +7,7 @@ import Grid from "../elements/Grid";
 import Text from "../elements/Text";
 import Comments from "../pages/Comments";
 import Detail from "./Detail";
+import Button from "../elements/Button";
 
 
-export { Login, Signup, PostDetail, PostList, PostWrite, Grid, Text, Comments, Detail };
+export { Login, Signup, PostDetail, PostList, PostWrite, Grid, Text, Comments, Detail, Button };
