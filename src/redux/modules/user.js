@@ -31,12 +31,9 @@ const signUpDB = (userId, nickname, userPw) => {
       userPw: userPw,
     }
 
-    apis.signUp(data)
-    // ({
-    //   method: "post",
-    //   url: `${config.api}/register`,
-    //   // 회원가입 시 입력 데이터 보내기(보내기만 하면 끝)
-    // })
+    apis
+    .signUp(data)
+
       .then(() => {
         window.alert("회원가입을 축하드립니다!");
         history.push("/login");
@@ -65,26 +62,18 @@ const LoginDB = (userId, userPw) => {
     apis
       .login(data)
       .then((res) => {
-        
-
         // 서버로부터 받은 토큰 변수에 할당
-        // const jwtToken = res.data.result.user.token;
         const jwtToken = res.data.token;
 
         // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
         setCookie("is_login", jwtToken);
         localStorage.setItem('token', jwtToken)
-        // 통신 시 헤더에 default 값으로 저장
-        // apis.defaults.headers.common["Authorization"] = `${jwtToken}`;
-        console.log(res);
-        
-        // const user = {
-        //   userId: userId,
-        // };
+
         window.alert(res.data.message)
         dispatch(setUser(data));
         history.replace("/");
       })
+
       .catch((err) => {
         console.log(err);
         window.alert("회원정보가 일치하지 않습니다.!");
@@ -93,6 +82,7 @@ const LoginDB = (userId, userPw) => {
   };
 };
 
+//로그인 체크 
 const loginCheckFB = () => {
 	return function (dispatch, getState, { history }) {
     const localtoken = localStorage.getItem("token")
@@ -101,7 +91,9 @@ const loginCheckFB = () => {
       usertoken: localtoken
     }
     
-    apis.logincheck(token).then((res) =>{
+    apis
+    .logincheck(token)
+    .then((res) =>{
       console.log(res)
       dispatch(setUser([res]));
     }).catch((err) => {
@@ -109,36 +101,6 @@ const loginCheckFB = () => {
     })
   };
 }
-// 로그인 후 회원 정보 조회
-// const getUserDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
-//     const jwtToken = getCookie("is_login");
-//     // console.log(jwtToken);
-
-//     // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
-//     // 백엔드에서 헤더로 넘어온 Authorization 에서 토큰 값에서 토큰값을 뽑아주기로 함.
-//     axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
-
-//     // console.log(axios.defaults.headers);
-
-//     axios({
-//       method: "post",
-//       url: `${config.api}/getUser`,
-//     })
-//       .then((res) => {
-//         // console.log(res);
-//         const user = {
-//           userId: res.data.userId,
-//           nickname: res.data.nickname,
-//         };
-//         dispatch(getUser(user));
-//       })
-//       .catch((err) => {
-//         console.log("유저정보 조회 에러", err);
-//       });
-//   };
-// };
 
 // 리듀서
 export default handleActions(
@@ -149,15 +111,17 @@ export default handleActions(
         draft.user = action.payload.user;
         draft.is_login = true;
       }),
+
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         //쿠키 삭제
         deleteCookie("is_login");
-
+        localStorage.removeItem('token');
         // 유저정보 삭제 하고 로그인상태 false로 변경
         draft.user = null;
         draft.is_login = false;
       }),
+      
     [GET_USER]: (state, action) =>
       produce(state, (draft) => {
         // 로그인상태(is_login) true로 변경
@@ -174,7 +138,6 @@ const actionCreators = {
   LoginDB,
   signUpDB,
   loginCheckFB
-  // getUserDB,
 };
 
 export { actionCreators };

@@ -106,30 +106,6 @@ const Header = (props) => {
               </div>
             </div>
 
-            
-
-            
-
-          {/* <Grid is_flex width="200px" style={{ */}
-            
-          {/* }}> */}
-          
-
-            {/* 상수님 코드 */}
-            {/* <Button width="100%"
-              text="로그인" bg="#31b051" _onClick={() => {
-                history.push("/login");
-              }}
-            ></Button> */}
-
-            {/* <Button width="100%" margin="0px 0px 0px 10px"
-              text="회원가입" bg="#b03192" _onClick={() => {
-                history.push("/register");
-              }}
-            ></Button> */}
-
-          {/* </Grid> */}
-
         </Grid>
       </React.Fragment>
     );

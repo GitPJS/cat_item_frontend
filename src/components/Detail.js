@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { Grid, Button, Text } from "../elements";
 import Comments from '../pages/Comments';
 import { actionCreators as postActions } from "../redux/modules/post";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 function Detail(props) {
-
+  const user_info = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+
     return (  
         <div className="container">
           <Text bold size="24px">{props.title}</Text>
@@ -60,6 +61,35 @@ function Detail(props) {
             <hr />
 
             <Comments />
+            {user_info.userId === props.userId?(<Grid><Button
+                  width="auto"
+                  margin="4px"
+                  padding="4px"
+                  _onClick={(e) => {
+                    //  이벤트 캡쳐링과 버블링을 막아요!
+                    // 이벤트 캡쳐링, 버블링이 뭔지 검색해보기! :)
+                    e.preventDefault();
+                    e.stopPropagation();
+                    history.push(`/write/${props.postId}`);
+                  }}
+                >
+                  수정
+                </Button>
+                <Button
+                  width="auto"
+                  margin="4px"
+                  padding="4px"
+                  _onClick={(e) => {
+                    //  이벤트 캡쳐링과 버블링을 막아요!
+                    // 이벤트 캡쳐링, 버블링이 뭔지 검색해보기! :)
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dispatch(postActions.deletePostMiddleware(props.postId));
+                  }}
+                >
+                  삭제
+                </Button></Grid>):''}
+            
           </Grid>
         </div>
     )

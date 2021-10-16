@@ -8,7 +8,7 @@ const PostList = (props) => {
     const { history } = props;
     const dispatch = useDispatch();
     const lists = useSelector((state) => state.post.list);
-    
+    const is_login = useSelector((state) => state.user.is_login);
     React.useEffect(() => {
 
         dispatch(postCreators.getPostMiddleware());
@@ -27,14 +27,16 @@ const PostList = (props) => {
                         )
                     })}
             </Grid>
-            <Button
-          is_float
-          _onClick={() => {
-            history.push("/write");
-          }}
-        >
-          +
-        </Button>
+            {is_login?(<Button
+            is_float
+            _onClick={() => {
+                history.push("/write");
+            }}
+            >
+            +
+            </Button>):''}
+            
+
         </React.Fragment>
     );
 };

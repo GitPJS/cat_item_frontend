@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid, Text, Image } from "../elements";
+import { history } from "../redux/configureStore";
 
 const Post = (props) => {
+
     return (
         <div className="container">
             <div className="row">
