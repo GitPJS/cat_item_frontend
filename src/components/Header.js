@@ -12,7 +12,7 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
 
   React.useEffect(()=>{
-    console.log(is_login)
+    
   },[])
 
   if (is_login) {

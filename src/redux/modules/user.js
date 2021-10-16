@@ -65,7 +65,7 @@ const LoginDB = (userId, userPw) => {
     apis
       .login(data)
       .then((res) => {
-        // console.log(res.data);
+        
 
         // 서버로부터 받은 토큰 변수에 할당
         // const jwtToken = res.data.result.user.token;
@@ -73,7 +73,7 @@ const LoginDB = (userId, userPw) => {
 
         // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
         setCookie("is_login", jwtToken);
-
+        localStorage.setItem('token', jwtToken)
         // 통신 시 헤더에 default 값으로 저장
         // apis.defaults.headers.common["Authorization"] = `${jwtToken}`;
         console.log(res);
@@ -93,6 +93,22 @@ const LoginDB = (userId, userPw) => {
   };
 };
 
+const loginCheckFB = () => {
+	return function (dispatch, getState, { history }) {
+    const localtoken = localStorage.getItem("token")
+    
+    const token = {
+      usertoken: localtoken
+    }
+    
+    apis.logincheck(token).then((res) =>{
+      console.log(res)
+      dispatch(setUser([res]));
+    }).catch((err) => {
+      console.log(err);
+    })
+  };
+}
 // 로그인 후 회원 정보 조회
 // const getUserDB = () => {
 //   return function (dispatch, getState, { history }) {
@@ -157,6 +173,7 @@ const actionCreators = {
   setUser,
   LoginDB,
   signUpDB,
+  loginCheckFB
   // getUserDB,
 };
 
