@@ -95,7 +95,7 @@ const loginCheckFB = () => {
     .logincheck(token)
     .then((res) =>{
       console.log(res)
-      dispatch(setUser([res]));
+      dispatch(setUser(res.data));
     }).catch((err) => {
       console.log(err);
     })
