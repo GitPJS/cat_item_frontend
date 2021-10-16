@@ -19,7 +19,7 @@ const PostList = (props) => {
             <Grid padding="20px 0px" is_grid >
                     {lists.map((list) => {
                         return(
-                            <Grid key={list.postId} margin="8px 0px" padding="30px" _onClick={() => {
+                            <Grid key={list.postId} margin="10px 0px" padding="20px" _onClick={() => {
                                 history.push(`/post/${list.postId}`);
                             }}>
                                 <Post {...list}/>

@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import { Grid } from "../elements"
+import { Grid, Text } from "../elements"
 
 function Comments(){
 
   let [title, titles] = useState([]);
   let [count, counts] = useState(0);
-  //내가 입력한 인풋값 추가하기 2(2)
   let [입력값, 입력값변경] = useState('');
   // const createAt = moment().format("YYYY-MM-DD");
 
@@ -13,14 +12,15 @@ function Comments(){
   return (
     <div className="App">
       <Grid padding="16px">
-      <p>댓글쓰기</p>
+      <Text bold size="18px">댓글쓰기</Text>
       <p>닉네임</p>
-      {/*내가 입력한 인풋값 추가하기 1(2)*/}
       <div>
+        {/* 인풋창 */}
         <input onChange={(e) => {입력값변경(e.target.value)}} placeholder="욕설은 징계 대상이 될 수 있습니다." style={{
           width: "100%",
           height: "50px"
         }}/>
+        {/* 인풋에 적힌값 저장하는 버튼 */}
         <button onClick={() => {
           var arrayCopy = [...title];
           arrayCopy.unshift(입력값);
