@@ -1,5 +1,6 @@
 import React from 'react';
 import Post from '../components/Post';
+import Header from '../components/Header';
 import { Grid,Button } from "../elements";
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postCreators } from '../redux/modules/post';
@@ -16,6 +17,7 @@ const PostList = (props) => {
 
     return (
         <React.Fragment>
+            <Header/>
             <Grid padding="20px 0px" is_grid >
                     {lists.map((list) => {
                         return(

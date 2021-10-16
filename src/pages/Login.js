@@ -84,7 +84,7 @@ const P = styled.p`
   color: #a445c5;
   margin: 0px auto;
   margin-bottom: 5px;
-  margin-left: 50px;
+  margin-left: 10px;
   margin-top: 10px;
   @media all and (max-width: 414px) {
     margin-left: 0;
@@ -114,7 +114,8 @@ const Button = styled.button`
   width: 12.5rem;
   height: 3rem;
   margin: 30px auto;
-  background-color: #e6ccef;
+  background-color: slateblue;
+  color : white;
   border: 0px solid #e6ccef;
   border-radius: 5px;
   font-size: 1rem;

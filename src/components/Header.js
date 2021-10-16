@@ -9,8 +9,6 @@ import '../shared/App.css';
 const Header = (props) => {
   const dispatch = useDispatch();
 
-  
-  
   const is_login = useSelector((state) => state.user.is_login);
 
   React.useEffect(()=>{
@@ -45,7 +43,7 @@ const Header = (props) => {
                   variant="outline-dark"
                   text="로그아웃" 
                   _onClick={() => {
-                    dispatch(userActions.logoutFB());
+                    dispatch(userActions.logOut());
                   }}
                 >
                   로그아웃

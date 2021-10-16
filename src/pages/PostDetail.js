@@ -6,6 +6,7 @@ import {Grid, Button} from "../elements";
 import Comments from "../pages/Comments";
 import { actionCreators as postActions } from "../redux/modules/post";
 import Detail from "../components/Detail";
+import Header from "../components/Header";
 
 
 
@@ -114,6 +115,7 @@ const PostDetail = (props) => {
 
   return (
     <React.Fragment>
+      <Header/>
       <Grid>
         {post && (
           <Detail {...post}/>

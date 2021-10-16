@@ -11,6 +11,7 @@ function Detail(props) {
 
     return (  
         <div className="container">
+
           <Text bold size="24px">{props.title}</Text>
    
           <Grid style={{
