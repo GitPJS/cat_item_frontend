@@ -1,4 +1,4 @@
-# cat_Item_backend 🐱‍👓고양이용품 추천 사이트 백앤드 
+# cat_Item_backend 🐱‍👓고양이용품 추천 사이트 프론트엔드 
 <h2>사이트설명</h2> 
 동거동락하는 소중한 고양이<br> 
 집사들만의 노하우가 담긴 팁들이나 용품들을 소개 해 보아요.<br>
@@ -13,8 +13,11 @@
 <li>React</li> 
 <li>Redux</li> 
 <li>react-router-dom</li>
-<h2>라이브러리</h2> 
-|제목|설명| |:------:|:---:| |cors|교차 리소스 공유| |dotenv|DB비밀번호, 시크릿키 암호화| |jsonwebtoken|회원가입 작동 방식| |sequelize|MySQL ORM| |mysql|MySQL| |cookie-parser|쿠키 저장| |multer|파일처리| |multer-s3|s3에 파일저장| |aws-sdk|자바스크립트용 aws서비스사용| |crypto|비밀번호 해쉬화| |swagger-autogen|스웨거 자동생성| |sharp|이미지 리사이징| <h2>deploy</h2> 
+<h2>주요기능</h2> 
+<li>포스트 읽기, 수정, 삭제, 입력기능</li>
+<li>이미지 업로드기능</li>
+<li>회원가입, 로그인, 로그아웃, 로그인유지</li>
+<h2>deploy</h2> 
 <li>AWS EC2 
 <li>AWS s3 
 <li>AWS lambda <br> 
