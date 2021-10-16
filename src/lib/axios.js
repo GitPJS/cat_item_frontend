@@ -26,10 +26,13 @@ export const apis = {
   // 게시물 삭제하기
   delPost: (id) => instance.patch(`api/posts/delete/${id}`),
   upload: (data) => instance.post('/api/posts/upload',data),
+  
+  
   //회원가입
   signUp: (data) => instance.post('/api/register', data),
   //로그인
   login : (data) => instance.post('/api/login', data),
+  //로그인 체크
   logincheck : (token) => instance.post('/api/user/me', token)
 
   //은설님 api

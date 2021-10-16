@@ -76,7 +76,6 @@ const Signup = () => {
 
         <Button onClick={signup}>회원가입하기</Button>
         <Question>
-          <p>회원이신가요?</p>
           <Link to="/login" style={{ marginTop: "16px", marginLeft: "10px" }}>
             로그인
           </Link>
@@ -167,7 +166,7 @@ const Question = styled.div`
   width: 12.5rem;
   display: flex;
   flex-direction: row;
-  margin-left: 19rem;
+  margin-left: 14rem;
   justify-content: flex-end;
   @media all and (max-width: 414px) {
     margin: 0;

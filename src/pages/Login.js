@@ -41,7 +41,6 @@ const Login = () => {
         ></Input>
         <Button onClick={login}>로그인하기</Button>
         <Question>
-          <p>아직 회원이 아니신가요?</p>
           <Link to="/register" style={{ marginTop: "16px", marginLeft: "10px" }}>
             회원가입
           </Link>
@@ -133,7 +132,7 @@ const Question = styled.div`
   width: 12.5rem;
   display: flex;
   flex-direction: row;
-  margin-left: 19rem;
+  margin-left: 14rem;
   justify-content: flex-end;
   @media all and (max-width: 1024px) {
     width: auto;
@@ -173,6 +172,8 @@ const Question = styled.div`
     }
   }
 `;
+
+
 const Title = styled.div`
   font-family: "Lobster", cursive;
   display: flex;

@@ -28,7 +28,7 @@ const Header = (props) => {
         <Grid is_flex>
             <Button
               _onClick={() => {
-                dispatch(userActions.logoutFB());
+                dispatch(userActions.logOut());
               }}
             >
               로그아웃
