@@ -23,7 +23,9 @@ http://tmahrm35.shop.s3-website.ap-northeast-2.amazonaws.com/
  [API스프레드시트](https://docs.google.com/spreadsheets/d/1GvhNR2HwSWzPTe2v8AqtW1i7GKxYRQVDAgfor6uLf0o/edit#gid=0) 
  [API스웨거](http://stravinest.shop/swagger/) 
  [API스웨거사용법](https://velog.io/@stravinest/swagger-%EC%82%AC%EC%9A%A9%EB%B2%95%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%9C%A0%EC%A7%80) 
+ <br/>
  <h2>문제 해결</h2> 
+ 
  <h3>1. 백엔드 없이 프론트단에서만 데이터 처리를 어떻게 하지??</h3>
  처음 작업을 시작했을 때는 어떤방식으로 해야할지 감이 오지 않았다<br>
  우선 프론트에서 따로 작업을 한 이후 최종적으로 백엔드와 맞추면서 기능을 구현해야 할거 같은데<br>
@@ -36,7 +38,7 @@ http://tmahrm35.shop.s3-website.ap-northeast-2.amazonaws.com/
  좀 찾아봤더니 mock-api는 id 값이 저절로 들어가 있어서 mock-api 만들때는 반드시 id값에 숫자형 값을 추가해야만
  동작이 된다고 한다<br>
  
- <h3>3.이미지 업로드 후 입력 문제</h3>
+ <h3>3. 이미지 업로드 후 입력 문제</h3>
  처음에는 프론트단에서 aws-s3를 이용해 이미지를 업로드 이후 불러와서 url값을 받아 입력값에 추가해서 입력해볼려고 했는데<br>
  보통 현업에서는 이런 방식으로는 안하고 formdata를 백엔드에 넘겨준 뒤 백엔드에서 formdata를 처리한 이후 url를 보내주는데<br>
  프론트에서 이 url값을 받아와서 입력한다고 한다. 그래서 file정보가 들어있는 formdata를 콘솔로그에 찍어봤는데 값이 안보이는 것이였다;;<br>
@@ -47,6 +49,17 @@ http://tmahrm35.shop.s3-website.ap-northeast-2.amazonaws.com/
  어떤 방식으로 유저 정보를 가지고 올지 고민이였다. 이 부분도 멘토님에게 도움을 요청했다<br>
  리덕스 안에 localStorage로 담긴 token값을 백엔드에 보내주고 해당 token값에 맞는 회원 아이디만 가지고 와서<br>
  리덕스 상태를 업데이트하는 방식으로 해결했다<br>
+ 
+ 
+ <h3>6. 유효성 검사(alert)</h3>
+ 로그인이나 회원가입부분에서 유효성체크를 할 때 백과 프론트에서 따로 유효성처리가 진행되었는데, <br/>
+ 오류가 발생한건 아니지만 미리 정해야할 필요성을 느꼈다.<br/>
+ 조율을 통해서 일단 res를 통해 백에서 띄우는 alert메세지를 넣었다.<br/>
+ 
+ <h3>7. 소통의 부재</h3>
+  백과의 연결을 너무 안일하게 생각했다. 실제로 백따로 프론트따로 테스팅하면서 작업을 했고<br/>
+  '작업하고 마지막에 연결하면 끝이겠지' 라고 생각했는데 아니라는걸 너무 뒤늦게 알아차렸다.<br/>
+  앞으로는 백에서는 이 기능이 어떻게 처리되는지, 어떻게 처리할 것인지 계속 대화를 해가며 기능구현을 해야겠다고 느꼈다.
  
  
  
