@@ -1,0 +1,8 @@
+.background {
+    background: #eee;
+    padding: 90px;
+    background-image: url('../components/cat6.jpeg');
+    background-size: cover;
+    text-shadow: white 0px 0px 1px;
+    color: white;
+  }
