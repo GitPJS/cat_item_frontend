@@ -3,10 +3,11 @@ import { history } from "../redux/configureStore";
 import styled from 'styled-components';
 import { Grid, Button, Text } from "../elements";
 import { actionCreators as postActions } from "../redux/modules/post";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 function Detail(props) {
-
+  const user_info = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+
     return (  
         <div className="container">
           <Grid>
@@ -22,7 +23,7 @@ function Detail(props) {
               <p>닉네임</p>
               <p>{props.content}</p>
             </Grid>
-            <Button
+            {user_info.userId === props.userId?(<Grid><Button
                   width="auto"
                   margin="4px"
                   padding="4px"
@@ -49,7 +50,8 @@ function Detail(props) {
                   }}
                 >
                   삭제
-                </Button>
+                </Button></Grid>):''}
+            
           </Grid>
         </div>
     )
