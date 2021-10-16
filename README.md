@@ -21,7 +21,8 @@
 <li>AWS EC2 
 <li>AWS s3 
 <li>AWS lambda <br> 
-<h2>실행화면링크</h2> 
+<h2>실행화면링크</h2>
+http://tmahrm35.shop.s3-website.ap-northeast-2.amazonaws.com/
 <h2>API설계</h2> 
  [API스프레드시트](https://docs.google.com/spreadsheets/d/1GvhNR2HwSWzPTe2v8AqtW1i7GKxYRQVDAgfor6uLf0o/edit#gid=0) 
  [API스웨거](http://stravinest.shop/swagger/) 
